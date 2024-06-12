@@ -37,20 +37,75 @@ function initialPrompt() {
 
 let newPointStructure;
 
-let simpleScorer;
-
-let vowelBonusScorer;
-
+//simpleScorer: Define a function that takes a word as a parameter and returns a numerical score. Each letter within the word is worth 1 point.
+function simpleScorer(word) {
+  word = word.toUpperCase();
+  simpleScoreArray = word.split("");
+  letterPoints = simpleScoreArray.length;
+  return letterPoints;
+}
+// vowelBonusScorer: Define a function that takes a word as a parameter and returns a score. Each vowel within the word is worth 3 points, and each consonant is worth 1 point.
+function vowelBonusScorer(word) {
+  word = word.toUpperCase();
+  vowelBonusArray = word.split("");
+  letterPoints = 0;
+  for (let i = 0; i < vowelBonusArray.length; i++) {
+    if (
+      vowelBonusArray[i] === "A" ||
+      vowelBonusArray[i] === "E" ||
+      vowelBonusArray[i] === "I" ||
+      vowelBonusArray[i] === "O" ||
+      vowelBonusArray[i] === "U"
+    ) {
+      letterPoints += 3;
+    } else {
+      letterPoints += 1;
+    }
+  }
+  return letterPoints;
+}
 let scrabbleScorer;
 
-const scoringAlgorithms = [];
+// Finish writing the scoringAlgorithms array. It should be populated with three objects, one for each of the three scoring options. Each object should contain three keys: name, description, and scoringFunction.
+//Scoring options: simpleScorer, vowelBonusScorer, oldScrabbleScorer
+let simpleScoreObject = {
+  name: "Simple Score",
+  description: "Each letter is worth 1 point.",
+  scoringFunction: simpleScorer,
+};
 
-function scorerPrompt() {}
+let vowelBonusObject = {
+  name: "Bonus Vowels",
+  description: "Vowels are 3 pts, consonants are 1 pt.",
+  scoringFunction: vowelBonusScorer,
+};
+
+let oldScrabbleObject = {
+  name: "Scrabble",
+  description: "The traditional scoring algorithm.",
+  scoringFunction: oldScrabbleScorer,
+};
+const scoringAlgorithms = [
+  simpleScoreObject,
+  vowelBonusObject,
+  oldScrabbleObject,
+];
+
+// Finish writing scorerPrompt() so that the user can select which scoring algorithm to use when the program scores their word. Use the selected algorithm to determine the score for the word:
+function scorerPrompt() {
+  console.log("Choose your scoring method: ");
+  for (let i = 0; i < scoringAlgorithms.length; i++) {
+    console.log(
+      `${i} - ${scoringAlgorithms[i].name}: ${scoringAlgorithms[i].description}`
+    );
+  }
+}
 
 function transform() {}
 
 function runProgram() {
   initialPrompt();
+  scorerPrompt();
 }
 
 // Don't write any code below this line //
