@@ -38,6 +38,7 @@ function initialPrompt() {
 let newPointStructure;
 
 //simpleScorer: Define a function that takes a word as a parameter and returns a numerical score. Each letter within the word is worth 1 point.
+//Part 2.1.1
 function simpleScorer(word) {
   word = word.toUpperCase();
   simpleScoreArray = word.split("");
@@ -45,6 +46,7 @@ function simpleScorer(word) {
   return letterPoints;
 }
 // vowelBonusScorer: Define a function that takes a word as a parameter and returns a score. Each vowel within the word is worth 3 points, and each consonant is worth 1 point.
+//Part 2.1.2
 function vowelBonusScorer(word) {
   word = word.toUpperCase();
   vowelBonusArray = word.split("");
@@ -68,6 +70,7 @@ let scrabbleScorer;
 
 // Finish writing the scoringAlgorithms array. It should be populated with three objects, one for each of the three scoring options. Each object should contain three keys: name, description, and scoringFunction.
 //Scoring options: simpleScorer, vowelBonusScorer, oldScrabbleScorer
+
 let simpleScoreObject = {
   name: "Simple Score",
   description: "Each letter is worth 1 point.",
